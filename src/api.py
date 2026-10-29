@@ -1,3 +1,4 @@
+from src.telemetry import record_predictions
 import logging
 import os
 import secrets
@@ -100,6 +101,7 @@ def run_predictions(
         ) from None
 
     metadata = bundle["metadata"]
+    record_predictions(frame, predictions, metadata)
 
     return [
         PredictionResponse(

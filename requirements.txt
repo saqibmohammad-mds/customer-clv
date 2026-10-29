@@ -12,3 +12,6 @@ uvicorn==0.34.2
 httpx==0.28.1
 pytest==8.3.5
 dvc[azure]>=3,<4
+evidently==0.6.7
+azure-identity==1.21.0
+azure-monitor-query==1.4.0
