@@ -1,6 +1,10 @@
 name: Monitor and retrain
 
 on:
+  push:
+    branches: [master, main]
+    paths:
+      - '.github/workflows/maintenance.yml'
   schedule:
     - cron: "0 3 * * *"
     - cron: "0 4 1 * *"
@@ -57,14 +61,14 @@ jobs:
 
       - name: Monitor live predictions
         if: >-
-          ${{ github.event.schedule == '0 3 * * *' ||
-          inputs.task == 'monitor' }}
+          ${{ !cancelled() && (github.event.schedule == '0 3 * * *' ||
+          inputs.task == 'monitor' || github.event_name == 'push') }}
         run: python -m src.monitor
 
       - name: Check for retraining
         if: >-
-          ${{ github.event.schedule == '0 4 1 * *' ||
-          inputs.task == 'retrain' }}
+          ${{ !cancelled() && (github.event.schedule == '0 4 1 * *' ||
+          inputs.task == 'retrain' || github.event_name == 'push') }}
         run: python -m src.retrain
 
       - name: Upload reports and candidate records
