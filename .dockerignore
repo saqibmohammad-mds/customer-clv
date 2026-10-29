@@ -1,0 +1,11 @@
+**
+!Dockerfile
+!requirements-api.txt
+!src/
+!src/**
+!artifacts/
+!artifacts/model.joblib
+!artifacts/model_metadata.json
+
+**/__pycache__/
+**/*.pyc

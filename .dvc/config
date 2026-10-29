@@ -1,0 +1,5 @@
+[core]
+    remote = azurestore
+['remote "azurestore"']
+    url = azure://dvc/customer-clv
+    account_name = clvdata88333c3ec8
